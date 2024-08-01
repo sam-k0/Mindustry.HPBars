@@ -1,11 +1,11 @@
 #the mod name as displayed in-game
-displayName: "Java Mod Template"
+displayName: "HP Bars"
 
 #the internal name of your mod
-name: "example-java-mod"
+name: "sam-k0-hp-bars"
 
 #your name
-author: "You"
+author: "sam-k0"
 
 #the fully qualified main class of the mod
 main: "example.ExampleJavaMod"
