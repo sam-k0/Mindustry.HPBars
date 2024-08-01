@@ -1,4 +1,4 @@
-package example;
+package hpbars;
 import arc.*;
 import arc.graphics.Color;
 import arc.graphics.g2d.Draw;
@@ -17,13 +17,13 @@ import mindustry.Vars;
 import mindustry.game.Team;
 
 
-public class ExampleJavaMod extends Mod{
+public class HPBarHook extends Mod{
 
     private Unit focusedEnemyUnit = null;
     private Unit focusedTeamUnit = null;
 
-    public ExampleJavaMod(){
-        Log.info("Loaded ExampleJavaMod constructor.");
+    public HPBarHook(){
+        Log.info("Loaded HPBars constructor.");
 
         //listen for game load event
         Events.on(ClientLoadEvent.class, e -> {
@@ -32,13 +32,15 @@ public class ExampleJavaMod extends Mod{
                 //show dialog upon startup
                 Vars.ui.announce("HP Bars mod: Nearest enemy and ally at mouse position will be shown.", 4f);
             });
+  
         });
 
 
         Events.run(EventType.Trigger.update, () -> {
 
-            focusedTeamUnit = Units.closest(Vars.player.team(), Vars.player.mouseX(), Vars.player.mouseY(), 100f, u -> u.team() == Team.sharded);
-            focusedEnemyUnit = Units.closestEnemy(Vars.player.team(), Vars.player.mouseX(), Vars.player.mouseY(), 100f, u -> u.team() != Team.sharded);
+            float range = 200f;
+            focusedTeamUnit = Units.closest(Vars.player.team(), Vars.player.mouseX(), Vars.player.mouseY(), range, u -> u.team() == Team.sharded);
+            focusedEnemyUnit = Units.closestEnemy(Vars.player.team(), Vars.player.mouseX(), Vars.player.mouseY(), range, u -> u.team() != Team.sharded);
         });
 
 
