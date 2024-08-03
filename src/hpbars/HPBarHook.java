@@ -22,6 +22,7 @@ public class HPBarHook extends Mod{
     public Color enemyColor = Color.red;
     public boolean showFriendlyHPBars = true;
     public boolean showEnemyHPBars = true;
+    public float showRadius = 200f;
 
     public HPBarHook(){
         Log.info("Loaded HPBars constructor.");
@@ -37,6 +38,7 @@ public class HPBarHook extends Mod{
             enemyColor = config.getEnemyColor();
             showFriendlyHPBars = config.isShowFriendlyHPBars();
             showEnemyHPBars = config.isShowEnemyHPBars();
+            showRadius = config.getShowRadius();
         });
 
 
@@ -45,7 +47,7 @@ public class HPBarHook extends Mod{
 
             if(showFriendlyHPBars)
             {
-                Units.nearby(Vars.player.team(),  Vars.player.mouseX(),  Vars.player.mouseY(), 200f, (Unit unit) -> {
+                Units.nearby(Vars.player.team(),  Vars.player.mouseX(),  Vars.player.mouseY(), showRadius, (Unit unit) -> {
                     drawHPBar(unit.x, unit.y, unit.health(), unit.maxHealth(), friendlyColor);
                 });
             }
@@ -53,7 +55,7 @@ public class HPBarHook extends Mod{
 
             if(showEnemyHPBars)
             {
-                Units.nearbyEnemies(Vars.player.team(), Vars.player.mouseX(), Vars.player.mouseY(), 200f, (Unit unit) -> {
+                Units.nearbyEnemies(Vars.player.team(), Vars.player.mouseX(), Vars.player.mouseY(), showRadius, (Unit unit) -> {
                 drawHPBar(unit.x, unit.y, unit.health(), unit.maxHealth(), enemyColor);
                 });
             } 
