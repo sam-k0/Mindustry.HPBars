@@ -14,6 +14,7 @@ public class Config {
     private boolean showEnemyHPBars;
     private Color friendlyColor;
     private Color enemyColor;
+    private float showRadius;
 
     private final String filePath;
 
@@ -33,6 +34,7 @@ public class Config {
         showEnemyHPBars = true;
         friendlyColor = Color.green;
         enemyColor = Color.red;
+        showRadius = 200f;
     }
 
     private boolean loadFromFile(String filePath) {
@@ -47,7 +49,7 @@ public class Config {
                 this.showEnemyHPBars = jsonData.getBoolean("showEnemyHPBars", true);
                 this.friendlyColor = jsonData.has("friendlyColor") ? Color.valueOf(jsonData.getString("friendlyColor")) : Color.green;
                 this.enemyColor =  jsonData.has("enemyColor") ? Color.valueOf(jsonData.getString("enemyColor")) : Color.red;
-
+                this.showRadius = jsonData.getFloat("showRadius", 200f);
                 return true;
             } catch (Exception e) {
                 e.printStackTrace();
@@ -63,6 +65,7 @@ public class Config {
             JsonValue jsonObject = new JsonValue(JsonValue.ValueType.object);
             jsonObject.addChild("showFriendlyHPBars", new JsonValue(showFriendlyHPBars));
             jsonObject.addChild("showEnemyHPBars", new JsonValue(showEnemyHPBars));
+            jsonObject.addChild("showRadius", new JsonValue(showRadius));
             
             jsonObject.addChild("friendlyColor", new JsonValue(friendlyColor.toString()) );
             jsonObject.addChild("enemyColor",new JsonValue(enemyColor.toString()) );
@@ -105,5 +108,13 @@ public class Config {
 
     public void setEnemyColor(Color enemyColor) {
         this.enemyColor = enemyColor;
+    }
+
+    public float getShowRadius() {
+        return showRadius;
+    }
+
+    public void setShowRadius(float showRadius) {
+        this.showRadius = showRadius;
     }
 }

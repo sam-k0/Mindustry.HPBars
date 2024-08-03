@@ -4,8 +4,8 @@ name: "sam-k0-hp-bars"
 author: "sam-k0"
 subtitle: "Shows hp bars at cursor pos."
 main: "hpbars.HPBarHook"
-description: "[scarlet]This mod shows hp bars for allied and enemy units at the cursor position."
-version: 1.0
+description: "This mod shows hp bars for allied and enemy units at the cursor position."
+version: 24.08.03
 minGameVersion: 146
 java: true
 hidden: true

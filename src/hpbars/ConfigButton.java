@@ -39,6 +39,15 @@ public class ConfigButton {
                         config.setShowEnemyHPBars(b);
                     }).row();
 
+                    t.add("HP Bar Cursor Radius").left();
+                    t.field(String.valueOf(config.getShowRadius()), s1 -> {
+                        try {
+                            config.setShowRadius(Float.parseFloat(s1));
+                        } catch (Exception e) {
+                            ShowErrorDialog("Invalid radius input: "+s1, dialog);
+                        }
+                    }).row();
+
                     t.add("Friendly Color").left();
                     t.field(config.getFriendlyColor().toString(), s1 -> {
                         try {
