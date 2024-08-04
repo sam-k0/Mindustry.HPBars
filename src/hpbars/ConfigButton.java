@@ -1,18 +1,8 @@
 package hpbars;
-import arc.Core;
-import arc.files.Fi;
 import arc.graphics.Color;
-import arc.math.Mathf;
-import arc.func.*;
-import arc.util.*;
-import arc.util.serialization.Jval;
-
 import mindustry.Vars;
 import mindustry.gen.Icon;
-import mindustry.graphics.Pal;
 import mindustry.ui.dialogs.*;
-import java.util.Objects;
-import java.nio.file.*;
 import mindustry.mod.*;
 
 

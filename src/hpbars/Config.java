@@ -1,12 +1,9 @@
 package hpbars;
 
 import arc.files.Fi;
-import arc.util.serialization.Json;
 import arc.util.serialization.JsonValue;
-import arc.util.serialization.JsonWriter;
 import arc.util.serialization.JsonReader;
 import mindustry.Vars;
-import mindustry.graphics.Pal;
 import arc.graphics.Color;
 
 public class Config {
@@ -16,13 +13,11 @@ public class Config {
     private Color enemyColor;
     private float showRadius;
 
-    private final String filePath;
+    //private final String filePath;
 
-    // Arc's Json instance
-    private static final Json json = new Json();
 
     public Config(String path) {
-        this.filePath = path;
+        //this.filePath = path;
         if (!loadFromFile(path)) {
             // If loading fails, initialize with default values
             init();
