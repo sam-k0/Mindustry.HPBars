@@ -1,4 +1,5 @@
 package hpbars;
+
 import arc.*;
 import arc.graphics.Color;
 import arc.graphics.g2d.Draw;
@@ -10,9 +11,8 @@ import mindustry.graphics.Layer;
 import mindustry.mod.*;
 import mindustry.entities.Units;
 import mindustry.Vars;
-import java.util.Random;
 
-public class HPBarHook extends Mod{
+public class HPBarHook extends Mod {
 
     // values will be loaded from the config file
     public Color friendlyColor = Color.green;
@@ -21,7 +21,7 @@ public class HPBarHook extends Mod{
     public boolean showEnemyHPBars = true;
     public float showRadius = 200f;
 
-    public HPBarHook(){
+    public HPBarHook() {
         Log.info("Loaded HPBars constructor.");
 
         Events.on(EventType.ClientLoadEvent.class, e -> {
@@ -38,63 +38,49 @@ public class HPBarHook extends Mod{
             showRadius = config.getShowRadius();
         });
 
-
         Events.run(EventType.Trigger.draw, () -> {
             Draw.z(Layer.overlayUI);
 
-            if(showFriendlyHPBars)
-            {
-                Units.nearby(Vars.player.team(),  Vars.player.mouseX(),  Vars.player.mouseY(), showRadius, (Unit unit) -> {
-                    drawHPBar(unit.x, unit.y, unit.health(), unit.maxHealth(), friendlyColor);
-                });
+            if (showFriendlyHPBars) {
+                Units.nearby(Vars.player.team(), Vars.player.mouseX(), Vars.player.mouseY(), showRadius,
+                    (Unit unit) -> {
+                        drawHPBar(unit.x, unit.y, unit.health(), unit.maxHealth(), friendlyColor);
+                    });
             }
 
-
-            if(showEnemyHPBars)
-            {
-                Units.nearbyEnemies(Vars.player.team(), Vars.player.mouseX(), Vars.player.mouseY(), showRadius, (Unit unit) -> {
-                drawHPBar(unit.x, unit.y, unit.health(), unit.maxHealth(), enemyColor);
-                });
-            } 
+            if (showEnemyHPBars) {
+                Units.nearbyEnemies(Vars.player.team(), Vars.player.mouseX(), Vars.player.mouseY(), showRadius,
+                    (Unit unit) -> {
+                        drawHPBar(unit.x, unit.y, unit.health(), unit.maxHealth(), enemyColor);
+                    });
+            }
 
             Draw.reset();
         });
     }
-    
 
-    public void drawHPBar(float x, float y, float health, float maxHealth, Color color)
-    {
+    public void drawHPBar(float x, float y, float health, float maxHealth, Color color) {
         // calculate the x and y position of the HP bar
         float barWidth = 25;
         float barX = x - barWidth / 2;
         float barY = y + 15;
         float barHeight = 4;
-        
+
         Draw.z(Layer.max);
-        // Draw the background of the HP bar
         Draw.color(Color.darkGray);
         // Draw the border
-        if(health < 0)
-        {
+        if (health < 0) {
             Draw.color(Color.darkGray);
         }
-        Fill.crect(barX, barY, barWidth, barHeight);
 
+        Fill.crect(barX, barY, barWidth, barHeight);
         float healthPercent = health / maxHealth;
-        if(health < 0) healthPercent = 0;
+        if (health < 0)
+            healthPercent = 0;
         // Draw the current health
         Draw.color(color);
         Fill.crect(barX, barY, barWidth * healthPercent, barHeight);
-        
-        Draw.reset();
-    }
 
-    public String choose(String[] options) {
-        if (options == null || options.length == 0) {
-            throw new IllegalArgumentException("Options array must not be null or empty");
-        }
-        Random random = new Random();
-        int index = random.nextInt(options.length);  // Randomly choose an index from 0 to options.length-1
-        return options[index];
+        Draw.reset();
     }
 }

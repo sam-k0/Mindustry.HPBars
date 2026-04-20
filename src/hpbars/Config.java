@@ -13,11 +13,8 @@ public class Config {
     private Color enemyColor;
     private float showRadius;
 
-    //private final String filePath;
-
-
     public Config(String path) {
-        //this.filePath = path;
+        // this.filePath = path;
         if (!loadFromFile(path)) {
             // If loading fails, initialize with default values
             init();
@@ -42,8 +39,10 @@ public class Config {
                 // Copy the loaded values
                 this.showFriendlyHPBars = jsonData.getBoolean("showFriendlyHPBars", true);
                 this.showEnemyHPBars = jsonData.getBoolean("showEnemyHPBars", true);
-                this.friendlyColor = jsonData.has("friendlyColor") ? Color.valueOf(jsonData.getString("friendlyColor")) : Color.green;
-                this.enemyColor =  jsonData.has("enemyColor") ? Color.valueOf(jsonData.getString("enemyColor")) : Color.red;
+                this.friendlyColor = jsonData.has("friendlyColor") ? Color.valueOf(jsonData.getString("friendlyColor"))
+                        : Color.green;
+                this.enemyColor = jsonData.has("enemyColor") ? Color.valueOf(jsonData.getString("enemyColor"))
+                        : Color.red;
                 this.showRadius = jsonData.getFloat("showRadius", 200f);
                 return true;
             } catch (Exception e) {
@@ -61,9 +60,8 @@ public class Config {
             jsonObject.addChild("showFriendlyHPBars", new JsonValue(showFriendlyHPBars));
             jsonObject.addChild("showEnemyHPBars", new JsonValue(showEnemyHPBars));
             jsonObject.addChild("showRadius", new JsonValue(showRadius));
-            
-            jsonObject.addChild("friendlyColor", new JsonValue(friendlyColor.toString()) );
-            jsonObject.addChild("enemyColor",new JsonValue(enemyColor.toString()) );
+            jsonObject.addChild("friendlyColor", new JsonValue(friendlyColor.toString()));
+            jsonObject.addChild("enemyColor", new JsonValue(enemyColor.toString()));
 
             file.writeString(jsonObject.toString(), false);
         } catch (Exception e) {

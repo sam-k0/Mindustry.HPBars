@@ -1,10 +1,10 @@
 package hpbars;
+
 import arc.graphics.Color;
 import mindustry.Vars;
 import mindustry.gen.Icon;
 import mindustry.ui.dialogs.*;
 import mindustry.mod.*;
-
 
 public class ConfigButton {
     public static void init(Mod mod) {
@@ -34,7 +34,7 @@ public class ConfigButton {
                         try {
                             config.setShowRadius(Float.parseFloat(s1));
                         } catch (Exception e) {
-                            ShowErrorDialog("Invalid radius input: "+s1, dialog);
+                            ShowErrorDialog("Invalid radius input: " + s1, dialog);
                         }
                     }).row();
 
@@ -43,7 +43,7 @@ public class ConfigButton {
                         try {
                             config.setFriendlyColor(Color.valueOf(s1));
                         } catch (Exception e) {
-                            ShowErrorDialog("Invalid color input: "+s1, dialog);
+                            ShowErrorDialog("Invalid color input: " + s1, dialog);
                         }
                     }).row();
 
@@ -52,7 +52,7 @@ public class ConfigButton {
                         try {
                             config.setEnemyColor(Color.valueOf(s1));
                         } catch (Exception e) {
-                            ShowErrorDialog("Invalid color input: "+ s1, dialog);
+                            ShowErrorDialog("Invalid color input: " + s1, dialog);
                         }
                     }).row();
                 });
@@ -61,10 +61,10 @@ public class ConfigButton {
                     config.saveFile(mod.getConfig().path());
                     dialog.hide();
                 }).size(250f, 50f);
-                
+
                 dialog.buttons.button("Cancel", dialog::hide).size(200f, 50f);
                 dialog.show();
-            }).size(250f,50f);
+            }).size(250f, 50f);
         });
     }
 
